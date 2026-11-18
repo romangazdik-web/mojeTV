@@ -4,7 +4,7 @@
   "description": "Minimalisticky cesky launcher pro TizenBrew a starsi Samsung Tizen",
   "packageType": "app",
   "appName": "Nyymind's TV",
-  "appPath": "app/index.html",
+  "appPath": "app/nyminds-v3.html",
   "keys": ["ColorF0Red", "ColorF1Green", "ColorF2Yellow", "ColorF3Blue"],
   "files": ["app/"]
 }
