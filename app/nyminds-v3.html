@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1920, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Nymind’s TV</title>
+  <!-- Wallpaper fix v3.1: absolute CDN paths, rotation each hour -->
+  <link rel="stylesheet" href="style.css?v=3.0">
+</head>
+<body>
+<div id="stage">
+  <div id="wallpaper" class="wallpaper"></div>
+  <div class="scrim"></div>
+  <div class="soft-glow"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-symbol"><span class="brand-triangle">&#9654;</span></div>
+      <div class="brand-name">Nymind<span class="brand-apostrophe">’s</span> <span class="brand-tv">TV</span></div>
+    </div>
+    <div class="now"><div id="date">—</div><strong id="clock">--:--</strong></div>
+  </header>
+
+  <main>
+    <div class="intro-area">
+      <div class="eyebrow">TV PODLE TEBE</div>
+      <h1 id="greeting">Vítej doma.</h1>
+      <p class="subtitle">To, na co máš právě náladu.</p>
+    </div>
+    <section class="tiles" id="tiles" aria-label="Aplikace">
+      <div class="tile active" data-kind="module" data-match="gh/romangazdik-web/StremioK" tabindex="0">
+        <span class="tile-icon stremio-icon"><span class="stremio-triangle">&#9654;</span></span>
+        <span class="tile-copy"><strong>StremioK</strong><small>Filmy a seriály</small></span>
+        <span class="tile-open">&#8599;</span>
+      </div>
+      <div class="tile" data-kind="module" data-match="gh/romangazdik-web/TizenTube-MojeTV" tabindex="0">
+        <span class="tile-icon tube-icon"><span class="tube-triangle">&#9654;</span></span>
+        <span class="tile-copy"><strong>TizenTube</strong><small>Videa bez reklam</small></span>
+        <span class="tile-open">&#8599;</span>
+      </div>
+    </section>
+    <span id="status" class="screenreader-only" aria-live="polite">Načítám nainstalované moduly…</span>
+  </main>
+  <div class="background-label" id="background-label">NYMIND’S TV</div>
+</div>
+
+<div id="overlay" class="overlay hidden">
+ <div class="modal">
+  <div class="modal-top"><div><span class="modal-overline">SPRÁVA APLIKACÍ</span><h2>Všechny moduly</h2></div><div class="close">Zpět = zavřít</div></div>
+  <div id="module-list" class="module-list"></div>
+  <p class="modal-note">Servisní nabídka TizenBrew. V běžném režimu není vidět.</p>
+ </div>
+</div>
+
+<script src="app.js"></script>
+<script>
+/* Tizen 3.0 / Chromium 47 compatible: plain ES5 only. Backgrounds are packaged locally. */
+(function(){
+  var bg=document.getElementById('wallpaper');
+  var greeting=document.getElementById('greeting');
+  var lastIndex=-1;
+  function showWallpaper(){
+    var now=new Date();
+    var h=now.getHours();
+    var index=h%7; /* one wallpaper per hour; use directly accessible GitHub CDN files */
+    if(index!==lastIndex){
+      lastIndex=index;
+      var wallpaperUrl='https://cdn.jsdelivr.net/gh/romangazdik-web/mojeTV@main/app/wallpapers/wallpaper-'+index+'.jpg';
+      /* Using an absolute image URL avoids relative-path differences in TizenBrew. */
+      bg.style.backgroundImage='url("'+wallpaperUrl+'")';
+      bg.style.opacity='1';
+    }
+    if(h<11)greeting.textContent='Dobré ráno.';
+    else if(h<18)greeting.textContent='Pěkný den.';
+    else greeting.textContent='Dobrý večer.';
+  }
+  showWallpaper();
+  setInterval(showWallpaper,30000);
+  if(document.addEventListener)document.addEventListener('visibilitychange',showWallpaper,false);
+})();
+</script>
+</body>
+</html>
+
