@@ -1,9 +1,9 @@
 {
   "name": "moje-tv-launcher",
-  "version": "0.1.0",
+  "version": "0.3.2",
   "description": "Minimalisticky cesky launcher pro TizenBrew a starsi Samsung Tizen",
   "packageType": "app",
-  "appName": "Moje TV",
+  "appName": "Nyymind's TV",
   "appPath": "app/index.html",
   "keys": ["ColorF0Red", "ColorF1Green", "ColorF2Yellow", "ColorF3Blue"],
   "files": ["app/"]
