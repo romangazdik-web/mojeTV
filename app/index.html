@@ -8,34 +8,50 @@
 </head>
 <body>
 <div id="stage">
-  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <div class="ambient ambient-a"></div>
+  <div class="ambient ambient-b"></div>
+  <div class="ambient ambient-c"></div>
   <header>
-    <div class="brand"><span class="brand-mark">M</span><div><strong>MOJE TV</strong><small>MULTIMEDIÁLNÍ CENTRUM</small></div></div>
+    <div class="brand">
+      <span class="brand-mark"><span class="mark-ring"></span><span class="mark-play">&#9654;</span></span>
+      <div class="brand-copy"><strong>MOJE TV</strong><small>MOJE MULTIMEDIÁLNÍ CENTRUM</small></div>
+    </div>
     <div class="now"><span id="date">—</span><strong id="clock">--:--</strong></div>
   </header>
   <main>
-    <p class="kicker">VŠECHNO NA JEDNOM MÍSTĚ</p>
-    <h1>Co si dnes pustíme?</h1>
-    <p class="intro">Jednoduše filmy, seriály a videa. Bez zbytečností.</p>
+    <div class="hero">
+      <div class="hero-left">
+        <p class="kicker"><span class="live-dot"></span> VŠECHNO PŘIPRAVENO</p>
+        <h1>Co si dnes <em>pustíme?</em></h1>
+        <p class="intro">Filmy, seriály a videa. Jen to, co opravdu používáš.</p>
+      </div>
+      <div class="hero-badge"><span class="hero-badge-icon">↶</span><div><strong>JEDNOTNÉ OVLÁDÁNÍ</strong><small>2× Zpět = Moje TV</small></div></div>
+    </div>
     <section class="tiles" id="tiles" aria-label="Aplikace">
       <div class="tile active" data-kind="module" data-match="gh/romangazdik-web/StremioK" tabindex="0">
-        <div class="tile-art stremio"><span class="shape">▶</span></div>
-        <div class="tile-copy"><h2>StremioK</h2><p>Filmy a seriály</p></div><span class="tile-arrow">↗</span>
+        <div class="tile-orbit tile-orbit-one"></div><div class="tile-orbit tile-orbit-two"></div>
+        <div class="tile-art stremio"><span class="shape">&#9654;</span></div>
+        <div class="tile-meta">01 <span class="meta-line"></span> STREAMING</div>
+        <div class="tile-copy"><h2>StremioK</h2><p>Filmy a seriály na jednom místě</p></div>
+        <div class="tile-arrow">↗</div>
       </div>
       <div class="tile" data-kind="module" data-match="gh/romangazdik-web/TizenTube-MojeTV" tabindex="0">
-        <div class="tile-art youtube"><span class="play">▶</span></div>
-        <div class="tile-copy"><h2>TizenTube</h2><p>YouTube bez reklam</p></div><span class="tile-arrow">↗</span>
-      </div>
-      <div class="tile" data-kind="list" tabindex="0">
-        <div class="tile-art apps"><span>▦</span></div>
-        <div class="tile-copy"><h2>Další aplikace</h2><p>Moduly TizenBrew</p></div><span class="tile-arrow">↗</span>
+        <div class="tile-orbit tile-orbit-one"></div><div class="tile-orbit tile-orbit-two"></div>
+        <div class="tile-art youtube"><span class="play">&#9654;</span></div>
+        <div class="tile-meta">02 <span class="meta-line"></span> VIDEO</div>
+        <div class="tile-copy"><h2>TizenTube</h2><p>YouTube bez reklam a rušení</p></div>
+        <div class="tile-arrow">↗</div>
       </div>
     </section>
     <div class="hint"><span class="hint-dot"></span><span id="status">Načítám nainstalované moduly…</span></div>
   </main>
-  <footer><span>OK <b>Spustit</b></span><span>◀ ▶ <b>Vybrat</b></span><span>Červené tlačítko <b>Všechny moduly</b></span><span>← <b>Zavřít nabídku</b></span></footer>
+  <footer>
+    <div class="footer-left"><span class="key">OK</span> Spustit <span class="footer-sep"></span> <span class="key">◀ ▶</span> Vybrat</div>
+    <div class="footer-right">Dvakrát <b>Zpět</b> = domů <span class="footer-sep"></span> <span class="soft-admin">Červené tlačítko: moduly</span></div>
+  </footer>
 </div>
-<div id="overlay" class="overlay hidden"><div class="modal"><div class="modal-top"><div><span class="kicker">TIZENBREW</span><h2>Všechny moduly</h2></div><div class="close">Zpět = zavřít</div></div><div id="module-list" class="module-list"></div><p class="modal-note">Zobrazují se moduly nainstalované v TizenBrew. Běžné aplikace Samsungu tu zatím nejsou.</p></div></div>
+<div id="overlay" class="overlay hidden"><div class="modal"><div class="modal-top"><div><span class="kicker">TIZENBREW</span><h2>Všechny moduly</h2></div><div class="close">Zpět = zavřít</div></div><div id="module-list" class="module-list"></div><p class="modal-note">Servisní seznam modulů TizenBrew. Běžné aplikace Samsungu zde nejsou.</p></div></div>
 <script src="app.js"></script>
 </body>
 </html>
+
