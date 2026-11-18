@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=1920, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>Nymind’s TV</title>
+  <!-- Wallpaper fix v3.1: absolute CDN paths, rotation each hour -->
   <link rel="stylesheet" href="style.css?v=3.0">
 </head>
 <body>
@@ -61,14 +62,13 @@
   function showWallpaper(){
     var now=new Date();
     var h=now.getHours();
-    var index=h%4; /* one wallpaper per hour, rotates through the four local images */
+    var index=h%7; /* one wallpaper per hour; use directly accessible GitHub CDN files */
     if(index!==lastIndex){
       lastIndex=index;
-      if(!bg.style.backgroundImage){bg.style.backgroundImage='url("wallpapers/wallpaper-'+index+'.jpg")';}
-      else{
-        bg.style.opacity='0.18';
-        setTimeout(function(){bg.style.backgroundImage='url("wallpapers/wallpaper-'+index+'.jpg")';bg.style.opacity='1';},420);
-      }
+      var wallpaperUrl='https://cdn.jsdelivr.net/gh/romangazdik-web/mojeTV@main/app/wallpapers/wallpaper-'+index+'.jpg';
+      /* Using an absolute image URL avoids relative-path differences in TizenBrew. */
+      bg.style.backgroundImage='url("'+wallpaperUrl+'")';
+      bg.style.opacity='1';
     }
     if(h<11)greeting.textContent='Dobré ráno.';
     else if(h<18)greeting.textContent='Pěkný den.';
