@@ -61,7 +61,7 @@
   function showWallpaper(){
     var now=new Date();
     var h=now.getHours();
-    var index=h%6; /* one wallpaper per hour, rotates through the four local images */
+    var index=h%4; /* one wallpaper per hour, rotates through the four local images */
     if(index!==lastIndex){
       lastIndex=index;
       if(!bg.style.backgroundImage){bg.style.backgroundImage='url("wallpapers/wallpaper-'+index+'.jpg")';}
