@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1920,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Moje TV</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="stage">
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <header>
+    <div class="brand"><span class="brand-mark">M</span><div><strong>MOJE TV</strong><small>MULTIMEDIÁLNÍ CENTRUM</small></div></div>
+    <div class="now"><span id="date">—</span><strong id="clock">--:--</strong></div>
+  </header>
+  <main>
+    <p class="kicker">VŠECHNO NA JEDNOM MÍSTĚ</p>
+    <h1>Co si dnes pustíme?</h1>
+    <p class="intro">Jednoduše filmy, seriály a videa. Bez zbytečností.</p>
+    <section class="tiles" id="tiles" aria-label="Aplikace">
+      <div class="tile active" data-kind="module" data-match="stremiok" tabindex="0">
+        <div class="tile-art stremio"><span class="shape">▶</span></div>
+        <div class="tile-copy"><h2>StremioK</h2><p>Filmy a seriály</p></div><span class="tile-arrow">↗</span>
+      </div>
+      <div class="tile" data-kind="module" data-match="tizentube" tabindex="0">
+        <div class="tile-art youtube"><span class="play">▶</span></div>
+        <div class="tile-copy"><h2>TizenTube</h2><p>YouTube bez reklam</p></div><span class="tile-arrow">↗</span>
+      </div>
+      <div class="tile" data-kind="list" tabindex="0">
+        <div class="tile-art apps"><span>▦</span></div>
+        <div class="tile-copy"><h2>Další aplikace</h2><p>Moduly TizenBrew</p></div><span class="tile-arrow">↗</span>
+      </div>
+    </section>
+    <div class="hint"><span class="hint-dot"></span><span id="status">Načítám nainstalované moduly…</span></div>
+  </main>
+  <footer><span>OK <b>Spustit</b></span><span>◀ ▶ <b>Vybrat</b></span><span>Červené tlačítko <b>Všechny moduly</b></span><span>← <b>Zavřít nabídku</b></span></footer>
+</div>
+<div id="overlay" class="overlay hidden"><div class="modal"><div class="modal-top"><div><span class="kicker">TIZENBREW</span><h2>Všechny moduly</h2></div><div class="close">Zpět = zavřít</div></div><div id="module-list" class="module-list"></div><p class="modal-note">Zobrazují se moduly nainstalované v TizenBrew. Běžné aplikace Samsungu tu zatím nejsou.</p></div></div>
+<script src="app.js"></script>
+</body>
+</html>
