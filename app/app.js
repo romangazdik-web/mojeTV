@@ -41,7 +41,31 @@
     },function(msg){status(msg);});
   }
   function select(i){selected=Math.max(0,Math.min(tiles.length-1,i));for(var j=0;j<tiles.length;j++)tiles[j].className='tile'+(j===selected?' active':'');tiles[selected].focus();}
-  function launchSelected(){var t=tiles[selected],kind=t.getAttribute('data-kind');if(kind==='list')showList();else run(find(t.getAttribute('data-match')));}
+  function ps5Message(txt){
+    status(txt);
+    var el=$('ps5Message');
+    if(!el){el=document.createElement('div');el.id='ps5Message';el.style.cssText='position:fixed;left:12%;right:12%;bottom:12%;z-index:9999;background:#101820;border:2px solid #fff;border-radius:18px;color:white;padding:30px;font:24px Arial;text-align:center';document.body.appendChild(el);}
+    el.textContent=txt;el.style.display='block';clearTimeout(window.ps5NoticeTimer);window.ps5NoticeTimer=setTimeout(function(){el.style.display='none';},9000);
+  }
+  function launchPS5(){
+    ps5Message('PlayStation 5 · Přepínám na HDMI 2…');
+    if(typeof tizen==='undefined'||!tizen.tvwindow||!tizen.systeminfo){ps5Message('Přepnutí HDMI 2 není v této aplikaci dostupné. Použij Zdroj → HDMI 2.');return;}
+    try{
+      tizen.systeminfo.getPropertyValue('VIDEOSOURCE',function(info){
+        var all=((info&&info.connected)||[]).concat((info&&info.disconnected)||[]),target=null,i;
+        for(i=0;i<all.length;i++)if(String(all[i].type).toUpperCase()==='HDMI'&&Number(all[i].number)===2){target=all[i];break;}
+        if(!target){ps5Message('HDMI 2 nebylo nalezeno. Použij Zdroj → HDMI 2.');return;}
+        try{
+          tizen.tvwindow.setSource(target,function(){
+            try{
+              tizen.application.launch('org.tizen.tv-viewer',function(){},function(e){ps5Message('HDMI 2 vybráno, ale systémový přehrávač nejde otevřít: '+(e&&e.name||'chyba'));});
+            }catch(e){ps5Message('HDMI 2 vybráno, ale nelze přepnout celou obrazovku: '+(e.name||'chyba'));}
+          },function(e){ps5Message('Samsung nepovolil přepnutí HDMI 2: '+(e&&e.name||'chyba')+'. Použij Zdroj → HDMI 2.');});
+        }catch(e){ps5Message('Přepnutí HDMI není podporováno: '+(e.name||'chyba'));}
+      },function(e){ps5Message('Není dostupný seznam HDMI: '+(e&&e.name||'chyba'))});
+    }catch(e){ps5Message('Přepnutí HDMI 2 selhalo: '+(e.name||'chyba'));}
+  }
+  function launchSelected(){var t=tiles[selected],kind=t.getAttribute('data-kind');if(kind==='ps5')launchPS5();else if(kind==='list')showList();else run(find(t.getAttribute('data-match')));}
   function showList(){openList=true;$('overlay').className='overlay';renderList();}
   function hideList(){openList=false;$('overlay').className='overlay hidden';select(selected);}
   function renderList(){var box=$('module-list');box.innerHTML='';if(!modules.length){box.innerHTML='<div class="module">Žádné moduly zatím nebyly načteny.</div>';return;}
